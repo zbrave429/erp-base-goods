@@ -1,0 +1,38 @@
+server:
+  port: 8010
+  servlet:
+    context-path: /erp-base-goods-web
+
+spring:
+  application:
+    name: erp-base-goods-web
+
+# nacos + dubbo
+dubbo:
+  application: #当前这个应用的信息
+    name: erp-base-goods-web
+  registry: #注册相关信
+    address: nacos://127.0.0.1:8848 #注册中心配置
+    timeout: 30000 # 到注册中心的超时时间
+#    parameters:
+#      namespace: defe3773-7dc7-4b14-9bb1-da3ccfea77da
+    username: nacos
+    password: nacos
+  consumer:
+    # 服务连接超时时间
+    timeout: 3000
+    # 取消服务启动检查
+    check: false
+    layer: web
+    owner: brave
+#    validation: jvalidatorNew
+  monitor:
+    protocol: registry
+  config-center:
+    protocol: nacos
+    address: nacos://127.0.0.1:8848
+  metadata-report:
+    address: nacos://127.0.0.1:8848
+    protocol: nacos
+    username: nacos
+    password: nacos
